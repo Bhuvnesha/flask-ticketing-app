@@ -1,0 +1,94 @@
+-- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1:3306
+-- Generation Time: May 01, 2025 at 11:19 AM
+-- Server version: 5.6.51
+-- PHP Version: 8.2.13
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `tickets_db`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ticket`
+--
+
+DROP TABLE IF EXISTS `ticket`;
+CREATE TABLE IF NOT EXISTS `ticket` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(100) NOT NULL,
+  `description` text NOT NULL,
+  `status` varchar(20) NOT NULL DEFAULT 'Open',
+  `user_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `ticket`
+--
+
+INSERT INTO `ticket` (`id`, `title`, `description`, `status`, `user_id`) VALUES
+(1, 'test updated', 'this is a test updated', 'Closed', NULL),
+(2, 'test 2 updated', 'this is a test 2', 'Closed', NULL),
+(3, 'test 3', 'this is a test 3', 'Open', NULL),
+(4, '', '', 'Open', NULL),
+(5, '', '', 'Open', NULL),
+(6, '', '', 'Open', NULL),
+(7, '', '', 'Open', NULL),
+(8, '', '', 'Open', NULL),
+(9, '', '', 'Open', NULL),
+(10, '', '', 'Open', NULL),
+(11, '', '', 'Open', NULL),
+(12, '', '', 'Open', NULL),
+(13, 'test 4', 'this is a test 4\r\n', 'Open', NULL),
+(14, '', '', 'Open', NULL),
+(15, '', '', 'Open', NULL),
+(16, 'this is a test for 5', 'this is a test for five', 'Open', NULL),
+(17, '', '', 'Open', NULL),
+(18, 'test 6', 'this is a test 6', 'Open', 1),
+(19, 'ticket 7', 'this is a ticket 7', 'Closed', 3);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user`
+--
+
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE IF NOT EXISTS `user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(50) NOT NULL,
+  `password` varchar(60) NOT NULL,
+  `email` varchar(50) DEFAULT NULL,
+  `role` varchar(20) NOT NULL DEFAULT 'user',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `username` (`username`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`id`, `username`, `password`, `email`, `role`) VALUES
+(1, 'admin', '$2b$12$CxVVUSjAEeHwUJmWoQq4kurhfLbAUad45bvcWlILUPU5TWZfVoQ1W', NULL, 'admin'),
+(2, 'praveen', '$2b$12$v65zAxh7nx7GiHMZNdGvjOdTvnlsq15AOOhhZ/u2s6hqZG5HIse8a', NULL, 'user'),
+(3, 'disha', '$2b$12$sC8U2SuQGalxFVoF.ml69.u59hrxtrSDO5Vi278MAJdjybP6AtQji', 'disha@gmail.com', 'user');
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
